@@ -1,0 +1,50 @@
+<?php
+
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+/**
+ * Store switcher template
+ *
+ * @see \Magento\Store\Block\Store\Switcher
+ */
+?>
+
+
+<?php if (count($block->getStores())>1): ?>
+<?php $id = $block->getIdModifier() ? '-' . $block->getIdModifier() : ''?>
+<div class="easyflags switcher language switcher-language" data-ui-id="language-switcher" id="switcher-language<?php /* @escapeNotVerified */ echo $id?>">
+    <div class="actions options switcher-options">
+
+        <!-- Active option -->
+        <div class="easyflags-active" id="switcher-language-trigger<?php /* @escapeNotVerified */ echo $id?>">
+            <strong class="view-<?php echo $block->escapeHtml($block->getCurrentStoreCode()) ?>">
+                <span>
+                    <img title="<?php echo $block->escapeHtml($block->getStoreName()) ?>"
+                        src="<?php echo $this->helper('Swissup\Easyflags\Helper\Config')->getImage($block->getCurrentStoreId()) ?>"
+                    />
+                </span>
+            </strong>
+        </div>
+
+        <!-- Clickable options -->
+        <div class="easyflags-clickable-options" >
+            <?php foreach ($block->getStores() as $_lang): ?>
+                <?php if ($_lang->getId() != $block->getCurrentStoreId()): ?>
+                    <a href="#" data-post='<?php /* @escapeNotVerified */ echo $block->getTargetStorePostData($_lang); ?>'>
+                        <img title="<?php echo $block->escapeHtml($_lang->getName()) ?>"
+                            src="<?php echo $this->helper('Swissup\Easyflags\Helper\Config')->getImage($_lang->getId()) ?>"
+                        />
+                    </a>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</div>
+<?php endif; ?>
