@@ -5,7 +5,7 @@
             <class>separator-top</class>
             <label>EasyFlags</label>
             <tab>swissup</tab>
-            <resource>Swissup_Easyflags::config_easyflags</resource>
+            <resource>Swissup_Easyflags::easyflags_config</resource>
 
             <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>General</label>
