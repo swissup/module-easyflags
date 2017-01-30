@@ -1,13 +1,17 @@
 <?php
 namespace Swissup\Easyflags\Helper;
 
-use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Helper\AbstractHelper;
 use Magento\Store\Model\ScopeInterface;
 use Magento\Framework\UrlInterface;
 
 class Config extends AbstractHelper
 {
+    public function isEnabled()
+    {
+        return (bool)$this->scopeConfig->getValue('easyflags/general/enabled');
+    }
+
     public function getImage($storeId)
     {
         $image = $this->scopeConfig->getValue(
@@ -20,5 +24,4 @@ class Config extends AbstractHelper
             ['_type' => UrlInterface::URL_TYPE_MEDIA]
         );
     }
-
 }

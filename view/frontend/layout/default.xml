@@ -3,6 +3,10 @@
         <css src="Swissup_Easyflags::css/easyflags.css"/>
     </head>
     <body>
-        <referenceBlock name="store_language" template="Swissup_Easyflags::easyflags/flags.phtml"/>
+        <referenceBlock name="store_language">
+            <action method="setTemplate" ifconfig="easyflags/general/enabled">
+                <argument name="template" xsi:type="string">Swissup_Easyflags::easyflags/flags.phtml</argument>
+            </action>
+        </referenceBlock>
     </body>
 </page>
