@@ -6,5 +6,10 @@
                 <enabled>0</enabled>
             </general>
         </easyflags>
+        <subscriptionchecker>
+            <ignore>
+                <easyflags/>
+            </ignore>
+        </subscriptionchecker>
     </default>
 </config>
