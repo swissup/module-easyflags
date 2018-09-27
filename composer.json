@@ -1,11 +1,11 @@
 {
-    "name": "swissup/easyflags",
+    "name": "swissup/module-easyflags",
     "description": "Module replaces default store switcher with flag images",
     "type": "magento2-module",
-    "version": "1.0.1",
+    "version": "1.1.0",
     "license": "OSL-3.0",
     "require": {
-        "swissup/core": "*"
+        "swissup/module-core": "^1.7.0"
     },
     "autoload": {
         "files": [ "registration.php" ],

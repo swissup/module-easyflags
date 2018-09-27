@@ -7,8 +7,8 @@ ___
 
 ```
 cd <magento_root>
-composer config repositories.swissup/easyflags vcs git@github.com:swissup/easyflags.git
-composer require swissup/easyflags --prefer-source
-bin/magento module:enable Swissup_Easyflags
+composer config repositories.swissup composer https://docs.swissuplabs.com/packages/
+composer require swissup/module-easyflags --prefer-source
+bin/magento module:enable Swissup_Easyflags Swissup_Core
 bin/magento setup:upgrade
 ```
