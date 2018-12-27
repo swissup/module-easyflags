@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <block class="Magento\Framework\View\Element\Template" name="swissupEasyflagsUplaoder" template="Swissup_Easyflags::ko-template.phtml">
+            <arguments>
+                <argument name="jsLayout" xsi:type="array">
+                    <item name="components" xsi:type="array">
+                        <item name="swissup_easyflags_uploader" xsi:type="array">
+                            <item name="component" xsi:type="string">uiComponent</item>
+                            <item name="children" xsi:type="array">
+                                <item name="easyflags_image" xsi:type="array">
+                                    <item name="type" xsi:type="string">media</item>
+                                    <item name="name" xsi:type="string">easyflags_image</item>
+                                    <item name="dataScope" xsi:type="string">easyflags_image</item>
+                                    <item name="config" xsi:type="array">
+                                        <item name="component" xsi:type="string">Magento_Ui/js/form/element/file-uploader</item>
+                                        <item name="template" xsi:type="string">ui/form/element/uploader/uploader</item>
+                                        <item name="dataType" xsi:type="string">string</item>
+                                        <item name="label" xsi:type="string" translate="true">Image</item>
+                                        <item name="visible" xsi:type="boolean">true</item>
+                                        <item name="formElement" xsi:type="string">fileUploader</item>
+                                        <item name="elementTmpl" xsi:type="string">ui/form/element/uploader/uploader</item>
+                                        <item name="previewTmpl" xsi:type="string">Magento_Catalog/image-preview</item>
+                                        <item name="required" xsi:type="boolean">false</item>
+                                        <item name="sortOrder" xsi:type="number">10</item>
+                                        <item name="uploaderConfig" xsi:type="array">
+                                            <item name="url" xsi:type="url" path="swissupEasyflags/image_upload/product"/>
+                                        </item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                </argument>
+            </arguments>
+        </block>
+    </body>
+</page>
