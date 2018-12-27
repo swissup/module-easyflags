@@ -14,6 +14,12 @@
         </arguments>
     </virtualType>
 
+    <virtualType name="Swissup\Easyflags\MediaFileInfo" type="Swissup\Core\Model\Media\FileInfo">
+        <arguments>
+            <argument name="mediaPath" xsi:type="string">/easyflags</argument>
+        </arguments>
+    </virtualType>
+
     <type name="Swissup\Easyflags\Controller\Adminhtml\Image\Upload">
         <arguments>
             <argument name="imageUploader" xsi:type="object">Swissup\Easyflags\StoreImageUpload</argument>
@@ -23,6 +29,12 @@
     <type name="Swissup\Easyflags\Observer\SaveFlagData">
         <arguments>
             <argument name="imageUploader" xsi:type="object">Swissup\Easyflags\StoreImageUpload</argument>
+        </arguments>
+    </type>
+
+    <type name="Swissup\Easyflags\Block\Uploader">
+        <arguments>
+            <argument name="fileInfo" xsi:type="object">Swissup\Easyflags\MediaFileInfo</argument>
         </arguments>
     </type>
 

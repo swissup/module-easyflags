@@ -7,9 +7,11 @@ use Magento\Framework\Event;
 class SaveFlagData implements Event\ObserverInterface
 {
     public function __construct(
-        \Magento\Catalog\Model\ImageUploader $imageUploader
+        \Magento\Catalog\Model\ImageUploader $imageUploader,
+        \Swissup\Easyflags\Model\StoreFactory $storeFlagFactory
     ) {
         $this->imageUploader = $imageUploader;
+        $this->storeFlagFactory = $storeFlagFactory;
     }
 
     /**
@@ -28,7 +30,6 @@ class SaveFlagData implements Event\ObserverInterface
             && $postData['store_type'] === 'store'
         ) {
             $imageField = 'easyflags_image';
-            $imageName = '';
             if (isset($postData[$imageField])
                 && is_array($postData[$imageField])
             ) {
@@ -42,6 +43,13 @@ class SaveFlagData implements Event\ObserverInterface
                         //
                     }
                 }
+
+                $storeId = $postData['store']['store_id'];
+                $this->storeFlagFactory->create()
+                    ->load($storeId)
+                    ->setStoreId($storeId)
+                    ->setImage($imageName)
+                    ->save();
             }
         }
     }

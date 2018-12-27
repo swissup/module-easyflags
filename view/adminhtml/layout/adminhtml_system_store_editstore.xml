@@ -7,7 +7,7 @@
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
-        <block class="Magento\Framework\View\Element\Template" name="swissupEasyflagsUplaoder" template="Swissup_Easyflags::ko-template.phtml">
+        <block class="Swissup\Easyflags\Block\Uploader" name="swissupEasyflagsUplaoder">
             <arguments>
                 <argument name="jsLayout" xsi:type="array">
                     <item name="components" xsi:type="array">
@@ -32,14 +32,6 @@
                                             <item name="url" xsi:type="url" path="swissup-easyflags/image/upload"/>
                                         </item>
                                     </item>
-                                    <!-- <item name="value" xsi:type="array">
-                                        <item name="0" xsi:type="array">
-                                            <item name="name" xsi:type="string">fitness-small_1.png</item>
-                                            <item name="size" xsi:type="number">5374</item>
-                                            <item name="type" xsi:type="string">image/png</item>
-                                            <item name="url" xsi:type="string">https://argento.mage/pub/media/prolabels/category/fitness-small_1.png</item>
-                                        </item>
-                                    </item> -->
                                 </item>
                             </item>
                         </item>
