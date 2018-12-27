@@ -1,0 +1,9 @@
+<render args="'ui/form/element/uploader/uploader'"/>
+
+<!-- workaround for old php form - add image names to form -->
+<each args="data: value, as: '$file'">
+    <input type="hidden" data-bind="value: $file.name, attr: { name: $parent.inputName + '[' + $index() + '][name]'}">
+    <!-- ko if: $file.tmp_name -->
+    <input type="hidden" data-bind="value: $file.tmp_name, attr: { name: $parent.inputName + '[' + $index() + '][tmp_name]'}">
+    <!-- /ko -->
+</each>

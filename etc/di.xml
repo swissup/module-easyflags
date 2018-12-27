@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <virtualType name="Swissup\Easyflags\StoreImageUpload" type="Magento\Catalog\Model\ImageUploader">
+        <arguments>
+            <argument name="baseTmpPath" xsi:type="string">easyflags/tmp</argument>
+            <argument name="basePath" xsi:type="string">easyflags</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="gif" xsi:type="string">gif</item>
+                <item name="png" xsi:type="string">png</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Swissup\Easyflags\Controller\Adminhtml\Image\Upload">
+        <arguments>
+            <argument name="imageUploader" xsi:type="object">Swissup\Easyflags\StoreImageUpload</argument>
+        </arguments>
+    </type>
+
+    <type name="Swissup\Easyflags\Observer\SaveFlagData">
+        <arguments>
+            <argument name="imageUploader" xsi:type="object">Swissup\Easyflags\StoreImageUpload</argument>
+        </arguments>
+    </type>
+
+</config>

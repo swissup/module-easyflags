@@ -6,7 +6,7 @@ use Magento\Framework\Event;
 use Magento\Framework\View\Element\Template;
 use Swissup\Easyflags\Block\Widget\Form\Renderer\Fieldset as FieldsetRenderer;
 
-class AddFlagFieldset implements Event\ObserverInterface
+class AddFlagData implements Event\ObserverInterface
 {
     /**
      * @param \Magento\Framework\Registry $registry

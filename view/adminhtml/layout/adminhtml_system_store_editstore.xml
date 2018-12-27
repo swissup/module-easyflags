@@ -20,19 +20,26 @@
                                     <item name="dataScope" xsi:type="string">easyflags_image</item>
                                     <item name="config" xsi:type="array">
                                         <item name="component" xsi:type="string">Magento_Ui/js/form/element/file-uploader</item>
-                                        <item name="template" xsi:type="string">ui/form/element/uploader/uploader</item>
+                                        <item name="template" xsi:type="string">Swissup_Easyflags/form/element/uploader/old-php-form-workaround</item>
                                         <item name="dataType" xsi:type="string">string</item>
                                         <item name="label" xsi:type="string" translate="true">Image</item>
                                         <item name="visible" xsi:type="boolean">true</item>
                                         <item name="formElement" xsi:type="string">fileUploader</item>
-                                        <item name="elementTmpl" xsi:type="string">ui/form/element/uploader/uploader</item>
                                         <item name="previewTmpl" xsi:type="string">Magento_Catalog/image-preview</item>
                                         <item name="required" xsi:type="boolean">false</item>
                                         <item name="sortOrder" xsi:type="number">10</item>
                                         <item name="uploaderConfig" xsi:type="array">
-                                            <item name="url" xsi:type="url" path="swissupEasyflags/image_upload/product"/>
+                                            <item name="url" xsi:type="url" path="swissup-easyflags/image/upload"/>
                                         </item>
                                     </item>
+                                    <!-- <item name="value" xsi:type="array">
+                                        <item name="0" xsi:type="array">
+                                            <item name="name" xsi:type="string">fitness-small_1.png</item>
+                                            <item name="size" xsi:type="number">5374</item>
+                                            <item name="type" xsi:type="string">image/png</item>
+                                            <item name="url" xsi:type="string">https://argento.mage/pub/media/prolabels/category/fitness-small_1.png</item>
+                                        </item>
+                                    </item> -->
                                 </item>
                             </item>
                         </item>
