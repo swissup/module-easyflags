@@ -32,7 +32,7 @@
         </arguments>
     </type>
 
-    <type name="Swissup\Easyflags\Block\Uploader">
+    <type name="Swissup\Easyflags\Block\Fieldset\HtmlContent">
         <arguments>
             <argument name="fileInfo" xsi:type="object">Swissup\Easyflags\MediaFileInfo</argument>
         </arguments>

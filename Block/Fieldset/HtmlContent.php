@@ -1,12 +1,25 @@
 <?php
 
-namespace Swissup\Easyflags\Block;
+namespace Swissup\Easyflags\Block\Fieldset;
 
 use Magento\Framework\View\Element\Template;
 
-class Uploader extends Template
+class HtmlContent extends Template
 {
-    protected $_template = 'ko-template.phtml';
+    /**
+     * {@inheritdoc}
+     */
+    protected $_template = 'fieldset/html-content.phtml';
+
+    /**
+     * @var \Swissup\Core\Api\Media\FileInfoInterface
+     */
+    protected $fileInfo;
+
+    /**
+     * @var \Swissup\Easyflags\Model\StoreFactory
+     */
+    protected $storeFlagFactory;
 
     /**
      * @param Template\Context $context
@@ -35,13 +48,13 @@ class Uploader extends Template
             $path = implode(
                 '/',
                 [
-                    'components', 'swissup_easyflags_uploader',
+                    'components', 'swissup_easyflags_fieldset',
                     'children', 'easyflags_image'
                 ]
             );
             $imageComponent = &$this->getJsLayoutDataRefenrece($path);
             $imageComponent['value'] = [
-                '0' => $this->fileInfo->getImageData($storeFlag->getImage())
+                $this->fileInfo->getImageData($storeFlag->getImage())
             ];
         }
 

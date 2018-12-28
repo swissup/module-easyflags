@@ -9,15 +9,17 @@ use Swissup\Easyflags\Block\Widget\Form\Renderer\Fieldset as FieldsetRenderer;
 class AddFlagData implements Event\ObserverInterface
 {
     /**
+     * @var \Magento\Framework\Registry
+     */
+    protected $registry;
+
+    /**
      * @param \Magento\Framework\Registry $registry
-     * @param FieldsetRenderer            $fieldsetRenderer
      */
     public function __construct(
-        \Magento\Framework\Registry $registry,
-        FieldsetRenderer $fieldsetRenderer
+        \Magento\Framework\Registry $registry
     ) {
         $this->registry = $registry;
-        $this->fieldsetRenderer = $fieldsetRenderer;
     }
 
     /**
@@ -28,9 +30,9 @@ class AddFlagData implements Event\ObserverInterface
     {
         if ($this->registry->registry('store_type') == 'store') {
             $block = $observer->getData('block');
-            $uploaderBlock = $block->getLayout()
-                ->getBlock('swissupEasyflagsUplaoder');
-            if (!$uploaderBlock) {
+            $htmlConetnt = $block->getLayout()
+                ->getBlock('swissupEasyflagsFieldset');
+            if (!$htmlConetnt) {
                 return;
             }
 
@@ -41,33 +43,9 @@ class AddFlagData implements Event\ObserverInterface
                 'easyflags_fieldset',
                 [
                     'legend' => __('Easy Flags'),
-                    'data-bind' => 'scope: "swissup_easyflags_uploader"',
-                    'data-mage-init' => $this->prepareMageInit($uploaderBlock),
-                    'html_content' => $this->prepareHtmlContent($uploaderBlock)
+                    'html_content' => $htmlConetnt->toHtml()
                 ]
-            )->setRenderer($this->fieldsetRenderer);
+            );
         }
-    }
-
-    /**
-     * Return value for data-mage-init attribute
-     *
-     * @param  Template $block
-     * @return string
-     */
-    private function prepareMageInit(Template $block)
-    {
-        return '{"Magento_Ui/js/core/app" : ' . $block->getJsLayout() . '}';
-    }
-
-    /**
-     * Returns KO template to render UI Component
-     *
-     * @param  Template $block
-     * @return string
-     */
-    private function prepareHtmlContent(Template $block)
-    {
-        return $block->toHtml();
     }
 }
