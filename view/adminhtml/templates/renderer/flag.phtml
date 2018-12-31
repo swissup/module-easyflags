@@ -1,0 +1,10 @@
+<?php
+    $helper = $this->helper(\Swissup\Easyflags\Helper\Data::class);
+    $imageUrl = $helper->getImageUrl($block->getStoreId());
+    if (!$imageUrl) {
+        return;
+    }
+?>
+<div style="float: left; padding: 0 1rem 0 0;">
+    <img src="<?= $imageUrl; ?>" style="max-height: 34px;">
+</div>

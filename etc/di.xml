@@ -38,4 +38,10 @@
         </arguments>
     </type>
 
+    <type name="Swissup\Easyflags\Helper\Data">
+        <arguments>
+            <argument name="fileInfo" xsi:type="object">Swissup\Easyflags\MediaFileInfo</argument>
+        </arguments>
+    </type>
+
 </config>
