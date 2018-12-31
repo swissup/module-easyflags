@@ -1,12 +1,5 @@
 <?php
-
-/**
- * Copyright © 2015 Magento. All rights reserved.
- * See COPYING.txt for license details.
- */
-
 // @codingStandardsIgnoreFile
-
 ?>
 <?php
 /**
@@ -27,7 +20,7 @@
             <strong class="view-<?php echo $block->escapeHtml($block->getCurrentStoreCode()) ?>">
                 <span>
                     <img title="<?php echo $block->escapeHtml($block->getStoreName()) ?>"
-                        src="<?php echo $this->helper('Swissup\Easyflags\Helper\Config')->getImage($block->getCurrentStoreId()) ?>"
+                        src="<?php echo $this->helper('Swissup\Easyflags\Helper\Data')->getImageUrl($block->getCurrentStoreId()) ?>"
                     />
                 </span>
             </strong>
@@ -39,7 +32,7 @@
                 <?php if ($_lang->getId() != $block->getCurrentStoreId()): ?>
                     <a href="#" data-post='<?php /* @escapeNotVerified */ echo $block->getTargetStorePostData($_lang); ?>'>
                         <img title="<?php echo $block->escapeHtml($_lang->getName()) ?>"
-                            src="<?php echo $this->helper('Swissup\Easyflags\Helper\Config')->getImage($_lang->getId()) ?>"
+                            src="<?php echo $this->helper('Swissup\Easyflags\Helper\Data')->getImageUrl($_lang->getId()) ?>"
                         />
                     </a>
                 <?php endif; ?>
