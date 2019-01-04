@@ -1,28 +1,25 @@
 <?php
-// @codingStandardsIgnoreFile
-?>
-<?php
-/**
- * Store switcher template
- *
- * @see \Magento\Store\Block\Store\Switcher
- */
-?>
+    // @codingStandardsIgnoreFile
 
+    /** @var \Magento\Store\Block\Switcher $block */
+    if (count($block->getStores()) < 1) {
+        return;
+    }
 
-<?php if (count($block->getStores())>1): ?>
-<?php $id = $block->getIdModifier() ? '-' . $block->getIdModifier() : ''?>
-<div class="easyflags switcher language switcher-language" data-ui-id="language-switcher" id="switcher-language<?php /* @escapeNotVerified */ echo $id?>">
+    $id = $block->getIdModifier() ? '-' . $block->getIdModifier() : '';
+    $helper = $this->helper('Swissup\Easyflags\Helper\Data');
+?>
+<div class="easyflags inline-mode switcher language switcher-language" data-ui-id="language-switcher" id="switcher-language<?php /* @escapeNotVerified */ echo $id?>">
     <div class="actions options switcher-options">
 
         <!-- Active option -->
         <div class="easyflags-active" id="switcher-language-trigger<?php /* @escapeNotVerified */ echo $id?>">
-            <strong class="view-<?php echo $block->escapeHtml($block->getCurrentStoreCode()) ?>">
-                <span>
-                    <img title="<?php echo $block->escapeHtml($block->getStoreName()) ?>"
-                        src="<?php echo $this->helper('Swissup\Easyflags\Helper\Data')->getImageUrl($block->getCurrentStoreId()) ?>"
-                    />
-                </span>
+            <strong class="view-<?= $block->escapeHtml($block->getCurrentStoreCode()) ?>" title="<?= $block->escapeHtml($block->getStoreName()) ?>">
+                <?php if ($imageUrl = $helper->getImageUrl($block->getCurrentStoreId())): ?>
+                    <img src="<?= $imageUrl ?>"/>
+                <?php else: ?>
+                    <span><?= substr($block->getStoreName(), 0, 3) ?></span>
+                <?php endif; ?>
             </strong>
         </div>
 
@@ -30,14 +27,15 @@
         <div class="easyflags-clickable-options" >
             <?php foreach ($block->getStores() as $_lang): ?>
                 <?php if ($_lang->getId() != $block->getCurrentStoreId()): ?>
-                    <a href="#" data-post='<?php /* @escapeNotVerified */ echo $block->getTargetStorePostData($_lang); ?>'>
-                        <img title="<?php echo $block->escapeHtml($_lang->getName()) ?>"
-                            src="<?php echo $this->helper('Swissup\Easyflags\Helper\Data')->getImageUrl($_lang->getId()) ?>"
-                        />
+                    <a href="#" data-post='<?= /* @escapeNotVerified */ $block->getTargetStorePostData($_lang); ?>' title="<?= $block->escapeHtml($_lang->getName()) ?>">
+                    <?php if ($imageUrl = $helper->getImageUrl($_lang->getId())): ?>
+                        <img src="<?= $imageUrl ?>"/>
+                    <?php else: ?>
+                        <span><?= substr($_lang->getName(), 0, 3) ?></span>
+                    <?php endif; ?>
                     </a>
                 <?php endif; ?>
             <?php endforeach; ?>
         </div>
     </div>
 </div>
-<?php endif; ?>

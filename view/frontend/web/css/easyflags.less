@@ -1,0 +1,37 @@
+.easyflags {
+    &-clickable-options,
+    &-active {
+        display: inline-block;
+
+        > a, > strong {
+            line-height: normal;
+
+            > img {
+                max-height: 22px;
+                vertical-align: middle;
+            }
+
+            > span {
+                background-color: rgba(0, 0, 0, 0.3);
+                color: #fff;
+                padding: 2px 4px;
+                vertical-align: middle;
+                text-transform: uppercase;
+            }
+        }
+    }
+
+    &-clickable-options {
+
+        > a {
+            opacity: .8;
+            margin: 0 2px;
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: none;
+                opacity: 1;
+            }
+        }
+    }
+}
