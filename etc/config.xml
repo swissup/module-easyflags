@@ -5,6 +5,9 @@
             <general>
                 <enabled>0</enabled>
             </general>
+            <lang_switcher>
+                <mode>dropdown</mode>
+            </lang_switcher>
         </easyflags>
         <subscriptionchecker>
             <ignore>

@@ -1,0 +1,11 @@
+<?php
+    $helper = $this->helper('Swissup\Easyflags\Helper\Data');
+    if (!$store = $block->getStore()) {
+        return;
+    }
+?>
+<?php if ($imageUrl = $helper->getImageUrl($store->getId())): ?>
+    <img class="flag-image" src="<?= $imageUrl ?>"/>
+<?php else: ?>
+    <span class="flag-placeholder"><?= substr($store->getName(), 0, 3) ?></span>
+<?php endif; ?>

@@ -30,7 +30,10 @@ class Data extends AbstractHelper
 
     public function isEnabled()
     {
-        return (bool)$this->scopeConfig->getValue('easyflags/general/enabled');
+        return $this->scopeConfig->isSetFlag(
+            'easyflags/general/enabled',
+            ScopeInterface::SCOPE_STORE
+        );
     }
 
     public function getImageUrl($storeId)
@@ -42,5 +45,13 @@ class Data extends AbstractHelper
         }
 
         return '';
+    }
+
+    public function getLanguageSwitcherMode()
+    {
+        return $this->scopeConfig->getValue(
+            'easyflags/lang_switcher/mode',
+            ScopeInterface::SCOPE_STORE
+        );
     }
 }

@@ -7,19 +7,18 @@
     }
 
     $id = $block->getIdModifier() ? '-' . $block->getIdModifier() : '';
+    $currentStore = is_array($block->getStores()) ? $block->getStores()[$block->getCurrentStoreId()] : null;
+    $flagRenderer = $block->getChildBlock('easyflags.renderer');
     $helper = $this->helper('Swissup\Easyflags\Helper\Data');
 ?>
-<div class="easyflags inline-mode switcher language switcher-language" data-ui-id="language-switcher" id="switcher-language<?php /* @escapeNotVerified */ echo $id?>">
-    <div class="actions options switcher-options">
-
+<div class="easyflags switcher language switcher-language" data-ui-id="language-switcher" id="switcher-language<?php /* @escapeNotVerified */ echo $id?>">
+    <div class="actions <?= $helper->getLanguageSwitcherMode() ?>-mode options switcher-options">
+    <?php if ($helper->getLanguageSwitcherMode() == \Swissup\Easyflags\Model\Config\Source\Mode::INLINE): ?>
+        <?php /* INLINE MODE */ ?>
         <!-- Active option -->
-        <div class="easyflags-active" id="switcher-language-trigger<?php /* @escapeNotVerified */ echo $id?>">
+        <div class="easyflags-active">
             <strong class="view-<?= $block->escapeHtml($block->getCurrentStoreCode()) ?>" title="<?= $block->escapeHtml($block->getStoreName()) ?>">
-                <?php if ($imageUrl = $helper->getImageUrl($block->getCurrentStoreId())): ?>
-                    <img src="<?= $imageUrl ?>"/>
-                <?php else: ?>
-                    <span><?= substr($block->getStoreName(), 0, 3) ?></span>
-                <?php endif; ?>
+                <?= $flagRenderer->setStore($currentStore)->toHtml() ?>
             </strong>
         </div>
 
@@ -28,14 +27,36 @@
             <?php foreach ($block->getStores() as $_lang): ?>
                 <?php if ($_lang->getId() != $block->getCurrentStoreId()): ?>
                     <a href="#" data-post='<?= /* @escapeNotVerified */ $block->getTargetStorePostData($_lang); ?>' title="<?= $block->escapeHtml($_lang->getName()) ?>">
-                    <?php if ($imageUrl = $helper->getImageUrl($_lang->getId())): ?>
-                        <img src="<?= $imageUrl ?>"/>
-                    <?php else: ?>
-                        <span><?= substr($_lang->getName(), 0, 3) ?></span>
-                    <?php endif; ?>
+                        <?= $flagRenderer->setStore($_lang)->toHtml() ?>
                     </a>
                 <?php endif; ?>
             <?php endforeach; ?>
         </div>
+    <?php elseif ($helper->getLanguageSwitcherMode() == \Swissup\Easyflags\Model\Config\Source\Mode::DROPDOWN): ?>
+        <?php /* DROPDOWN MODE */ ?>
+        <div class="action toggle switcher-trigger"
+             data-mage-init='{"dropdown":{}}'
+             data-toggle="dropdown"
+             data-trigger-keypress-button="true">
+            <strong class="view-<?= $block->escapeHtml($block->getCurrentStoreCode()) ?>">
+                <?= $flagRenderer->setStore($currentStore)->toHtml() ?>
+                <span class="flag-title"><?= $block->escapeHtml($block->getStoreName()) ?></span>
+            </strong>
+        </div>
+        <ul class="dropdown switcher-dropdown"
+            data-target="dropdown">
+            <?php foreach ($block->getStores() as $_lang): ?>
+                <?php if ($_lang->getId() != $block->getCurrentStoreId()): ?>
+                    <li class="view-<?= $block->escapeHtml($_lang->getCode()) ?> switcher-option">
+                        <a href="#" data-post='<?= /* @noEscape */ $block->getTargetStorePostData($_lang) ?>'>
+                            <?= $flagRenderer->setStore($_lang)->toHtml() ?>
+                            <span class="flag-title"><?= $block->escapeHtml($_lang->getName()) ?></span>
+                        </a>
+                    </li>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </ul>
+    <?php endif ?>
     </div>
+
 </div>
