@@ -13,13 +13,6 @@
                     <label>Enabled</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
-                <field id="image" translate="label" type="image" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Image</label>
-                    <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
-                    <upload_dir config="system/filesystem/media" scope_info="1">easyflags</upload_dir>
-                    <base_url type="media" scope_info="1">easyflags</base_url>
-                    <comment>Allowed file types: jpeg, gif, png.</comment>
-                </field>
             </group>
         </section>
     </system>
