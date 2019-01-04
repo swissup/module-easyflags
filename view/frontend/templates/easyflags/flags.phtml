@@ -13,6 +13,7 @@
 ?>
 <div class="easyflags switcher language switcher-language" data-ui-id="language-switcher" id="switcher-language<?php /* @escapeNotVerified */ echo $id?>">
     <div class="actions <?= $helper->getLanguageSwitcherMode() ?>-mode options switcher-options">
+
     <?php if ($helper->getLanguageSwitcherMode() == \Swissup\Easyflags\Model\Config\Source\Mode::INLINE): ?>
         <?php /* INLINE MODE */ ?>
         <!-- Active option -->
@@ -32,6 +33,7 @@
                 <?php endif; ?>
             <?php endforeach; ?>
         </div>
+
     <?php elseif ($helper->getLanguageSwitcherMode() == \Swissup\Easyflags\Model\Config\Source\Mode::DROPDOWN): ?>
         <?php /* DROPDOWN MODE */ ?>
         <div class="action toggle switcher-trigger"
@@ -56,6 +58,26 @@
                 <?php endif; ?>
             <?php endforeach; ?>
         </ul>
+    <?php elseif ($helper->getLanguageSwitcherMode() == \Swissup\Easyflags\Model\Config\Source\Mode::POPUP): ?>
+        <?php /* MODAL POPUP MODE */ ?>
+        <div class="action toggle switcher-trigger" data-bind="click: function(){ var modal = jQuery('.easyflags .switcher-popup').data('mageModal'); if (modal) modal.openModal(); }">
+            <strong class="view-<?= $block->escapeHtml($block->getCurrentStoreCode()) ?>">
+                <?= $flagRenderer->setStore($currentStore)->toHtml() ?>
+                <span class="flag-title"><?= $block->escapeHtml($block->getStoreName()) ?></span>
+            </strong>
+        </div>
+        <div class="switcher-popup" data-mage-init='{"Magento_Ui/js/modal/modal":{"responsive": true, "modalClass": "easyflags", "buttons":[]}}'>
+            <div class="easyflags-clickable-options" >
+                <?php foreach ($block->getStores() as $_lang): ?>
+                    <?php if ($_lang->getId() != $block->getCurrentStoreId()): ?>
+                        <a href="#" data-post='<?= /* @escapeNotVerified */ $block->getTargetStorePostData($_lang); ?>' title="<?= $block->escapeHtml($_lang->getName()) ?>">
+                            <?= $flagRenderer->setStore($_lang)->toHtml() ?>
+                            <span class="flag-title"><?= $block->escapeHtml($_lang->getName()) ?></span>
+                        </a>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            </div>
+        </div>
     <?php endif ?>
     </div>
 

@@ -6,8 +6,8 @@ class Mode implements \Magento\Framework\Option\ArrayInterface
 {
 
     const INLINE = 'inline';
-
     const DROPDOWN = 'dropdown';
+    const POPUP = 'popup';
 
 
     /**
@@ -25,6 +25,10 @@ class Mode implements \Magento\Framework\Option\ArrayInterface
             [
                 'value' => self::DROPDOWN,
                 'label' => __('Dropdown')
+            ],
+            [
+                'value' => self::POPUP,
+                'label' => __('Modal popup')
             ]
         ];
     }
