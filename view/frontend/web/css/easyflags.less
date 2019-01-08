@@ -1,3 +1,4 @@
+@import 'include/_effect-float';
 .easyflags {
     .flag-image {
         max-height: 22px;
@@ -27,17 +28,17 @@
     &-clickable-options {
 
         > a {
-            opacity: .8;
             margin: 0 2px;
             text-decoration: none;
 
             .switcher-popup & {
-                margin: 2rem 1rem;
+                margin: 1rem 1rem;
+                padding: 1rem 0;
             }
 
             &:hover {
+                .effect-float();
                 text-decoration: none;
-                opacity: 1;
             }
         }
     }
