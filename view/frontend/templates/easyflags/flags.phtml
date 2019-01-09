@@ -14,8 +14,8 @@
 <div class="easyflags switcher language switcher-language" data-ui-id="language-switcher" id="switcher-language<?php /* @escapeNotVerified */ echo $id?>">
     <div class="actions <?= $helper->getLanguageSwitcherMode() ?>-mode options switcher-options">
 
-    <?php if ($helper->getLanguageSwitcherMode() == \Swissup\Easyflags\Model\Config\Source\Mode::INLINE): ?>
-        <?php /* INLINE MODE */ ?>
+    <?php if ($helper->getLanguageSwitcherMode() == \Swissup\Easyflags\Model\Config\Source\Mode::ONELINE): ?>
+        <?php /* ONELINE MODE */ ?>
         <!-- Active option -->
         <div class="easyflags-active">
             <strong class="view-<?= $block->escapeHtml($block->getCurrentStoreCode()) ?>" title="<?= $block->escapeHtml($block->getStoreName()) ?>">

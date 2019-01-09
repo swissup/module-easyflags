@@ -3,7 +3,7 @@
     <system>
         <section id="easyflags" translate="label" type="text" sortOrder="523" showInDefault="1" showInWebsite="1" showInStore="1">
             <class>separator-top</class>
-            <label>EasyFlags</label>
+            <label>Easy Flags</label>
             <tab>swissup</tab>
             <resource>Swissup_Easyflags::config_easyflags</resource>
 

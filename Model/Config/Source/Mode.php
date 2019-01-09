@@ -5,7 +5,7 @@ namespace Swissup\Easyflags\Model\Config\Source;
 class Mode implements \Magento\Framework\Option\ArrayInterface
 {
 
-    const INLINE = 'inline';
+    const ONELINE = 'one-line';
     const DROPDOWN = 'dropdown';
     const POPUP = 'popup';
 
@@ -19,8 +19,8 @@ class Mode implements \Magento\Framework\Option\ArrayInterface
     {
         return [
             [
-                'value' => self::INLINE,
-                'label' => __('Inline')
+                'value' => self::ONELINE,
+                'label' => __('One line')
             ],
             [
                 'value' => self::DROPDOWN,
