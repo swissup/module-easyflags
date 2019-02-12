@@ -13,12 +13,12 @@
                                     <item name="name" xsi:type="string">easyflags_image</item>
                                     <item name="dataScope" xsi:type="string">easyflags_image</item>
                                     <item name="config" xsi:type="array">
-                                        <item name="component" xsi:type="string">Magento_Ui/js/form/element/file-uploader</item>
+                                        <item name="component" xsi:type="helper" helper="Swissup\Easyflags\Helper\Ui\ImageUploader::getComponent" />
                                         <item name="template" xsi:type="string">Swissup_Easyflags/form/element/uploader/old-php-form-workaround</item>
                                         <item name="dataType" xsi:type="string">string</item>
                                         <item name="label" xsi:type="string" translate="true">Image</item>
                                         <item name="visible" xsi:type="boolean">true</item>
-                                        <item name="formElement" xsi:type="string">fileUploader</item>
+                                        <item name="formElement" xsi:type="helper" helper="Swissup\Easyflags\Helper\Ui\ImageUploader::getFormElement" />
                                         <item name="previewTmpl" xsi:type="string">Magento_Catalog/image-preview</item>
                                         <item name="required" xsi:type="boolean">false</item>
                                         <item name="sortOrder" xsi:type="number">10</item>
