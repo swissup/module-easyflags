@@ -29,6 +29,8 @@ class SaveFlagData implements Event\ObserverInterface
             && !empty($postData['store_action'])
             && $postData['store_type'] === 'store'
         ) {
+            $storeId = $postData['store']['store_id'];
+            $storeFlagModel = $this->storeFlagFactory->create()->load($storeId);
             $imageField = 'easyflags_image';
             if (isset($postData[$imageField])
                 && is_array($postData[$imageField])
@@ -44,12 +46,12 @@ class SaveFlagData implements Event\ObserverInterface
                     }
                 }
 
-                $storeId = $postData['store']['store_id'];
-                $this->storeFlagFactory->create()
-                    ->load($storeId)
-                    ->setStoreId($storeId)
-                    ->setImage($imageName)
-                    ->save();
+                // Easyflags image provided - save it
+                $storeFlagModel->setStoreId($storeId)->setImage($imageName)->save();
+            } elseif ($storeFlagModel->getId()) {
+                // There is store flag record in DB. But there is no image provided
+                // Delete record.
+                $storeFlagModel->delete();
             }
         }
     }
