@@ -1,4 +1,6 @@
-<render args="'ui/form/element/uploader/uploader'"/>
+<!-- ko if: inputName = inputName || 'easyflags_image' -->
+    <render args="'ui/form/element/uploader/uploader'"/>
+<!-- /ko -->
 
 <!-- workaround for old php form - add image names to form -->
 <each args="data: value, as: '$file'">
