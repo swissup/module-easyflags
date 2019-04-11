@@ -1,0 +1,56 @@
+@import 'include/_effect-float';
+
+& when (@media-common = true) {
+    .easyflags {
+        .flag-image {
+            max-height: 22px;
+            vertical-align: middle;
+        }
+
+        .flag-placeholder {
+            background-color: rgba(0, 0, 0, 0.3);
+            color: #fff;
+            padding: 2px 4px;
+            text-transform: uppercase;
+        }
+
+        &-clickable-options,
+        &-active {
+            display: inline-flex;
+
+            .switcher-popup & {
+                flex-wrap: wrap;
+            }
+
+            > a, > strong {
+                line-height: normal;
+            }
+        }
+
+        &-clickable-options {
+
+            > a {
+                margin: 0 2px;
+                text-decoration: none;
+
+                .switcher-popup & {
+                    margin: 1rem 1rem;
+                    padding: 1rem 0;
+                }
+
+                &:hover {
+                    .effect-float();
+                    text-decoration: none;
+                }
+            }
+        }
+
+        .popup-mode .switcher-popup{
+            display: none;
+        }
+
+        .modal-inner-wrap {
+            width: 50%;
+        }
+    }
+}
