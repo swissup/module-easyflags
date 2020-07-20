@@ -1,29 +1,40 @@
 <?php
 namespace Swissup\Easyflags\Helper;
 
+use Swissup\Easyflags\Model\ResourceModel\Store as ResourceFlag;
 use Magento\Framework\App\Helper\AbstractHelper;
 use Magento\Framework\App\Helper\Context;
 use Magento\Store\Model\ScopeInterface;
-use Magento\Framework\UrlInterface;
+use Magento\Framework\DataObject;
 
 class Data extends AbstractHelper
 {
     /**
-     * @var \Swissup\Easyflags\Model\StoreFactory
+     * @var array
      */
-    protected $storeFlagFactory;
+    private $flags;
+
+    /**
+     * @var ResourceFlag
+     */
+    protected $resourceFlag;
 
     /**
      * @var \Swissup\Core\Api\Media\FileInfoInterface
      */
     protected $fileInfo;
 
+    /**
+     * @param ResourceFlag                              $resourceFlag
+     * @param \Swissup\Core\Api\Media\FileInfoInterface $fileInfo
+     * @param Context                                   $context
+     */
     public function __construct(
-        \Swissup\Easyflags\Model\StoreFactory $storeFlagFactory,
+        ResourceFlag $resourceFlag,
         \Swissup\Core\Api\Media\FileInfoInterface $fileInfo,
         Context $context
     ) {
-        $this->storeFlagFactory = $storeFlagFactory;
+        $this->resourceFlag = $resourceFlag;
         $this->fileInfo = $fileInfo;
         parent::__construct($context);
     }
@@ -38,13 +49,11 @@ class Data extends AbstractHelper
 
     public function getImageUrl($storeId)
     {
-        $storeFlag = $this->storeFlagFactory->create();
-        $storeFlag->load($storeId);
-        if ($storeFlag->getId()) {
-            return $this->fileInfo->getBaseUrl() . '/' . $storeFlag->getImage();
-        }
+        $storeFlag = $this->readData($storeId);
 
-        return '';
+        return $storeFlag->getImage()
+            ? $this->fileInfo->getBaseUrl() . '/' . $storeFlag->getImage()
+            : '';
     }
 
     public function getLanguageSwitcherMode()
@@ -53,5 +62,16 @@ class Data extends AbstractHelper
             'easyflags/lang_switcher/mode',
             ScopeInterface::SCOPE_STORE
         );
+    }
+
+    private function readData($storeId)
+    {
+        if (!isset($this->flags)) {
+            $this->flags = $this->resourceFlag->readData();
+        }
+
+        $data = ['id' => $storeId] + ($this->flags[$storeId] ?? []);
+
+        return new DataObject($data);
     }
 }
