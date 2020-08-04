@@ -9,6 +9,13 @@
                 <mode>dropdown</mode>
             </lang_switcher>
         </easyflags>
+        <swissup_amp>
+            <whitelist>
+                <layout_updates>
+                    <swissup_easyflags>Swissup_Easyflags</swissup_easyflags>
+                </layout_updates>
+            </whitelist>
+        </swissup_amp>
         <subscriptionchecker>
             <ignore>
                 <easyflags/>

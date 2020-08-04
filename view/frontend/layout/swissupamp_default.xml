@@ -1,0 +1,14 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="store_language">
+            <action method="setTemplate" ifconfig="easyflags/general/enabled">
+                <argument name="template" xsi:type="string">Swissup_Easyflags::swissupamp/easyflags/flags.phtml</argument>
+            </action>
+        </referenceBlock>
+        <referenceBlock name="easyflags.renderer">
+            <arguments>
+                <argument name="show_placeholder" xsi:type="boolean">false</argument>
+            </arguments>
+        </referenceBlock>
+    </body>
+</page>

@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="swissup_amp_block_scss_after_compile">
+        <observer name="swissup_easyflags" instance="Swissup\Easyflags\Observer\ScssAfterCompile" />
+    </event>
+</config>

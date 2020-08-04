@@ -1,0 +1,40 @@
+<?php
+/** @var \Magento\Store\Block\Switcher $block */
+?>
+<?php
+    $flagRenderer = $block->getChildBlock('easyflags.renderer');
+    $currentStore = is_array($block->getStores()) ? $block->getStores()[$block->getCurrentStoreId()] : null;
+?>
+<?php if (count($block->getStores())>1): ?>
+<div class="easyflags switcher language switcher-language">
+    <amp-accordion disable-session-states>
+        <section>
+            <header class="current">
+                <?= $flagRenderer->setStore($currentStore)->toHtml() ?>
+                <span class="flag-title"><?= $block->escapeHtml($currentStore->getName()) ?></span>
+            </header>
+            <div class="others">
+                <?php foreach ($block->getStores() as $_lang): ?>
+                    <?php
+                        $postData = $block->getTargetStorePostData($_lang);
+                        $postArr = json_decode($postData, true);
+                        if (strpos($postArr['action'], 'stores/store/redirect') !== false) {
+                            $url = $block->getUrl('stores/store/redirect', ['_query' => $postArr['data']]);
+                        } else {
+                            $url = $block->escapeUrl($_lang->getCurrentUrl());
+                        }
+                    ?>
+                    <?php if ($_lang->getId() != $block->getCurrentStoreId()): ?>
+                        <div>
+                            <a href="<?= $url ?>">
+                                <?= $flagRenderer->setStore($_lang)->toHtml() ?>
+                                <span class="flag-title"><?= $block->escapeHtml($_lang->getName()) ?></span>
+                            </a>
+                        </div>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            </div>
+        </section>
+    </amp-accordion>
+</div>
+<?php endif; ?>
