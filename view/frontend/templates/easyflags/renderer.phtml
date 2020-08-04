@@ -6,6 +6,6 @@
 ?>
 <?php if ($imageUrl = $helper->getImageUrl($store->getId())): ?>
     <img class="flag-image" src="<?= $imageUrl ?>"/>
-<?php else: ?>
-    <span class="flag-placeholder"><?= mb_substr($store->getName(), 0, 3) ?></span>
+<?php elseif ($block->getShowPlaceholder()): ?>
+    <span class="flag-placeholder"><?= strtoupper(mb_substr($store->getName(), 0, 3)) ?></span>
 <?php endif; ?>
