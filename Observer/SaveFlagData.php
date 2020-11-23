@@ -40,7 +40,7 @@ class SaveFlagData implements Event\ObserverInterface
                     : '';
                 if (isset($postData[$imageField][0]['tmp_name'])) {
                     try {
-                        $this->imageUploader->moveFileFromTmp($imageName);
+                        $this->imageUploader->moveFileFromTmp($imageName, true);
                     } catch (\Exception $e) {
                         //
                     }
