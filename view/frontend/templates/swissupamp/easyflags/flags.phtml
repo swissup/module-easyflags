@@ -10,8 +10,10 @@
     <amp-accordion disable-session-states>
         <section>
             <header class="current">
-                <?= $flagRenderer->setStore($currentStore)->toHtml() ?>
-                <span class="flag-title"><?= $block->escapeHtml($currentStore->getName()) ?></span>
+                <div>
+                    <?= $flagRenderer->setStore($currentStore)->toHtml() ?>
+                    <span class="flag-title"><?= $block->escapeHtml($currentStore->getName()) ?></span>
+                </div>
             </header>
             <div class="others">
                 <?php foreach ($block->getStores() as $_lang): ?>

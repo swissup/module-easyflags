@@ -30,7 +30,8 @@ class ScssAfterCompile implements \Magento\Framework\Event\ObserverInterface
 
         $transport = $observer->getTransport();
         $styles = $transport->getStyles()
-            . '.easyflags amp-accordion .current,.easyflags amp-accordion a{display:flex!important;align-items:center}'
+            . '.easyflags amp-accordion section header.current{padding: 4px 7px;}'
+            . '.easyflags amp-accordion section .current div,.easyflags amp-accordion section .others div a{display:flex;align-items:center}'
             . '.easyflags img{object-fit:contain;max-width:32px}'
             . '.easyflags .flag-title{margin:0 5px}'
             . '.switcher-language amp-accordion section .current{padding:7px}'
