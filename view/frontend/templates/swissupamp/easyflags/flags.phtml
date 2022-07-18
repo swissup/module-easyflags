@@ -2,7 +2,7 @@
 /** @var \Magento\Store\Block\Switcher $block */
 ?>
 <?php
-    $flagRenderer = $block->getChildBlock('easyflags.renderer');
+    $flagRenderer = $this->getLayout()->getBlock('easyflags.renderer');
     $currentStore = is_array($block->getStores()) ? $block->getStores()[$block->getCurrentStoreId()] : null;
 ?>
 <?php if (count($block->getStores())>1): ?>
