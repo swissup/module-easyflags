@@ -1,0 +1,12 @@
+{
+    "swissup_easyflags_store": {
+        "column": {
+            "store_id": true,
+            "image": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "SWISSUP_EASYFLAGS_STORE_STORE_ID_STORE_STORE_ID": true
+        }
+    }
+}
