@@ -8,7 +8,7 @@
 
     $id = $block->getIdModifier() ? '-' . $block->getIdModifier() : '';
     $currentStore = is_array($block->getStores()) ? $block->getStores()[$block->getCurrentStoreId()] : null;
-    $flagRenderer = $block->getChildBlock('easyflags.renderer');
+    $flagRenderer = $this->getLayout()->getBlock('easyflags.renderer');
     $helper = $this->helper('Swissup\Easyflags\Helper\Data');
 ?>
 <div class="easyflags switcher language switcher-language" data-ui-id="language-switcher" id="switcher-language<?php /* @escapeNotVerified */ echo $id?>" data-mage-init='{"Swissup_Easyflags/js/mobile-assigner":{}}'>

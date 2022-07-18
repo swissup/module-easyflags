@@ -4,11 +4,11 @@
             <action method="setTemplate" ifconfig="easyflags/general/enabled">
                 <argument name="template" xsi:type="string">Swissup_Easyflags::easyflags/flags.phtml</argument>
             </action>
-            <block class="Magento\Framework\View\Element\Template" name="easyflags.renderer" template="Swissup_Easyflags::easyflags/renderer.phtml" ifconfig="easyflags/general/enabled">
-                <arguments>
-                    <argument name="show_placeholder" xsi:type="boolean">true</argument>
-                </arguments>
-            </block>
         </referenceBlock>
+        <block class="Magento\Framework\View\Element\Template" name="easyflags.renderer" template="Swissup_Easyflags::easyflags/renderer.phtml" ifconfig="easyflags/general/enabled">
+            <arguments>
+                <argument name="show_placeholder" xsi:type="boolean">true</argument>
+            </arguments>
+        </block>
     </body>
 </page>
