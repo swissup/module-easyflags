@@ -1,5 +1,6 @@
 <?php
     // @codingStandardsIgnoreFile
+    use Swissup\Easyflags\Model\Config\Source\Mode as SwitcherMode;
 
     /** @var \Magento\Store\Block\Switcher $block */
     if (count($block->getStores()) < 1) {
@@ -9,12 +10,12 @@
     $id = $block->getIdModifier() ? '-' . $block->getIdModifier() : '';
     $currentStore = is_array($block->getStores()) ? $block->getStores()[$block->getCurrentStoreId()] : null;
     $flagRenderer = $this->getLayout()->getBlock('easyflags.renderer');
-    $helper = $this->helper('Swissup\Easyflags\Helper\Data');
+    $switcherMode = $this->helper('Swissup\Easyflags\Helper\Data')->getLanguageSwitcherMode();
 ?>
-<div class="easyflags switcher language switcher-language" data-ui-id="language-switcher" id="switcher-language<?php /* @escapeNotVerified */ echo $id?>" data-mage-init='{"Swissup_Easyflags/js/mobile-assigner":{}}'>
-    <div class="actions <?= $helper->getLanguageSwitcherMode() ?>-mode options switcher-options">
+<div class="easyflags switcher language switcher-language" data-ui-id="language-switcher" id="switcher-language<?php /* @escapeNotVerified */ echo $id?>" data-mage-init='{"Swissup_Easyflags/js/store-switcher":{}}'>
+    <div class="actions <?= $switcherMode ?>-mode options switcher-options">
 
-    <?php if ($helper->getLanguageSwitcherMode() == \Swissup\Easyflags\Model\Config\Source\Mode::ONELINE): ?>
+    <?php if ($switcherMode == SwitcherMode::ONELINE): ?>
         <?php /* ONELINE MODE */ ?>
         <!-- Active option -->
         <div class="easyflags-active">
@@ -27,14 +28,14 @@
         <div class="easyflags-clickable-options" >
             <?php foreach ($block->getStores() as $_lang): ?>
                 <?php if ($_lang->getId() != $block->getCurrentStoreId()): ?>
-                    <a href="#" data-post='<?= /* @escapeNotVerified */ $block->getTargetStorePostData($_lang); ?>' title="<?= $block->escapeHtml($_lang->getName()) ?>" data-store-code="<?= $block->escapeHtml($_lang->getCode()) ?>">
+                    <a href="#" title="<?= $block->escapeHtml($_lang->getName()) ?>" data-store-code="<?= $block->escapeHtml($_lang->getCode()) ?>">
                         <?= $flagRenderer->setStore($_lang)->toHtml() ?>
                     </a>
                 <?php endif; ?>
             <?php endforeach; ?>
         </div>
 
-    <?php elseif ($helper->getLanguageSwitcherMode() == \Swissup\Easyflags\Model\Config\Source\Mode::DROPDOWN): ?>
+    <?php elseif ($switcherMode == SwitcherMode::DROPDOWN): ?>
         <?php /* DROPDOWN MODE */ ?>
         <div class="action toggle switcher-trigger"
              data-mage-init='{"dropdown":{}}'
@@ -50,7 +51,7 @@
             <?php foreach ($block->getStores() as $_lang): ?>
                 <?php if ($_lang->getId() != $block->getCurrentStoreId()): ?>
                     <li class="view-<?= $block->escapeHtml($_lang->getCode()) ?> switcher-option">
-                        <a href="#" data-post='<?= /* @noEscape */ $block->getTargetStorePostData($_lang) ?>' data-store-code="<?= $block->escapeHtml($_lang->getCode()) ?>">
+                        <a href="#" data-store-code="<?= $block->escapeHtml($_lang->getCode()) ?>">
                             <?= $flagRenderer->setStore($_lang)->toHtml() ?>
                             <span class="flag-title"><?= $block->escapeHtml($_lang->getName()) ?></span>
                         </a>
@@ -58,7 +59,7 @@
                 <?php endif; ?>
             <?php endforeach; ?>
         </ul>
-    <?php elseif ($helper->getLanguageSwitcherMode() == \Swissup\Easyflags\Model\Config\Source\Mode::POPUP): ?>
+    <?php elseif ($switcherMode == SwitcherMode::POPUP): ?>
         <?php /* MODAL POPUP MODE */ ?>
         <div class="action toggle switcher-trigger" data-bind="click: function(){ var modal = jQuery('.easyflags .switcher-popup').data('mageModal'); if (modal) modal.openModal(); }">
             <strong class="view-<?= $block->escapeHtml($block->getCurrentStoreCode()) ?>" data-store-code="<?= $block->escapeHtml($currentStore->getCode()) ?>">
@@ -70,7 +71,7 @@
             <div class="easyflags-clickable-options" >
                 <?php foreach ($block->getStores() as $_lang): ?>
                     <?php if ($_lang->getId() != $block->getCurrentStoreId()): ?>
-                        <a href="#" data-post='<?= /* @escapeNotVerified */ $block->getTargetStorePostData($_lang); ?>' title="<?= $block->escapeHtml($_lang->getName()) ?>" data-store-code="<?= $block->escapeHtml($_lang->getCode()) ?>">
+                        <a href="#" title="<?= $block->escapeHtml($_lang->getName()) ?>" data-store-code="<?= $block->escapeHtml($_lang->getCode()) ?>">
                             <?= $flagRenderer->setStore($_lang)->toHtml() ?>
                             <span class="flag-title"><?= $block->escapeHtml($_lang->getName()) ?></span>
                         </a>

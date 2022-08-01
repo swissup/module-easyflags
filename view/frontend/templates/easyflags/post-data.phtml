@@ -1,0 +1,18 @@
+<?php
+    /**
+     * This template doesn't rendered. We leave it here for edge cases when
+     * `store-switcher.js` doesn't work. Check `store-switcher.js` for details.
+     */
+    if (count($block->getStores()) < 1) {
+        return;
+    }
+
+    $data = [];
+    foreach ($block->getStores() as $store) {
+        $code = $block->escapeHtml($store->getCode());
+        $data[$code] = json_decode($block->getTargetStorePostData($store), true);
+    }
+?>
+<script type="application/json" id="storesPostData">
+    <?= json_encode($data/*, JSON_PRETTY_PRINT*/) ?>
+</script>
