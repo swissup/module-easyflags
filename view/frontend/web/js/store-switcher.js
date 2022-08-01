@@ -3,6 +3,16 @@ define([
 ], function ($) {
     'use strict';
 
+    function redirectToStore(event) {
+        const storeCode = $(event.currentTarget).data('storeCode');
+        const url = $('#store\\\.settings').find(`.view-${storeCode} a`).attr('href');
+
+        if (url) {
+            event.preventDefault();
+            window.location = url;
+        }
+    }
+
     return function (options, element) {
         const $el = $(element);
 
@@ -31,14 +41,7 @@ define([
          * uncomment block in layout with post data. And implement store switch
          * with `mage/dataPost`.
          */
-        $el.on('click', '[data-store-code]', (event) => {
-            const storeCode = $(event.currentTarget).data('storeCode');
-            const url = $('#store\\\.settings').find(`.view-${storeCode} a`).attr('href');
-
-            if (url) {
-                event.preventDefault();
-                window.location = url;
-            }
-        });
+        $el.on('click', 'a[data-store-code]', redirectToStore);
+        $('.easyflags-clickable-options').on('click', 'a[data-store-code]', redirectToStore);
     };
 });
