@@ -1,47 +1,74 @@
 define([
-    'jquery'
-], function ($) {
+    'jquery',
+    'Magento_Ui/js/modal/modal'
+], function ($, Modal) {
     'use strict';
 
-    function redirectToStore(event) {
-        const storeCode = $(event.currentTarget).data('storeCode');
-        const url = $('#store\\\.settings').find(`.view-${storeCode} a`).attr('href');
+    $.widget('swissup.easyflagsStoreSwitcher', {
 
-        if (url) {
-            event.preventDefault();
-            window.location = url;
+        component: 'Swissup_Easyflags/js/store-switcher',
+
+        _create: function () {
+            this._super();
+
+            this.$storeSettings = $('#store\\\.settings');
+            this._initMobileDrawer();
+
+            this._on({
+                'click .switcher-trigger': () => $('.easyflags .switcher-popup').trigger('openModal')
+            })
+
+            // Use global listener on body because popup rendered outside of element
+            $('body').on(
+                'click',
+                '.easyflags a[data-store-code]',
+                this._switchStoreEvent.bind(this)
+            );
+        },
+
+        _switchStoreEvent: function (event) {
+            const store = $(event.currentTarget).data('storeCode');
+            const url = this.getStoreUrl(store);
+
+            if (url) {
+                event.preventDefault();
+                window.location = url;
+            }
+        },
+
+        _initMobileDrawer: function () {
+            const $el = $(this.element);
+            const me = this;
+
+            $el.find('[data-store-code]').each((index, item) => {
+                const $item = $(item);
+
+                me.$storeSettings
+                    .find('.view-' + $item.data('storeCode'))
+                    .find('a, span')
+                    .html($item.html());
+            });
+
+            me.$storeSettings
+                .find('.switcher-language')
+                .addClass('easyflags');
+        },
+
+        getStoreUrl: function (storeCode) {
+            // Find redirect url in mobile drawer.
+            // Or in script with ID "easyflags-urls".
+            return (
+                this.$storeSettings.find(`.view-${storeCode} a`).attr('href') ||
+                JSON.parse($('#easyflags-urls').html() || '{}')[storeCode]
+            );
+        },
+
+        _destroy: function () {
+            $('body').off('click', '.easyflags a[data-store-code]');
+
+            this._super();
         }
-    }
+    });
 
-    return function (options, element) {
-        const $el = $(element);
-
-        /**
-         * Add easyflags to mobile switcher in drawer.
-         */
-        $el.find('[data-store-code]').each(function () {
-            var code = $(this).data('storeCode');
-
-            $('#store\\\.settings')
-                .find('.view-' + code)
-                .find('a, span')
-                .html($(this).html());
-        });
-
-        $('#store\\\.settings')
-            .find('.switcher-language')
-            .addClass('easyflags');
-
-        /**
-         * Initialize click on store switcher for desktop.
-         * Use data from mobile switcher to redirect to proper store view.
-         *
-         * This solution should work for all Magento stores with
-         * store switcher in mobile drawer. But is case it doesn't work then
-         * uncomment block in layout with post data. And implement store switch
-         * with `mage/dataPost`.
-         */
-        $el.on('click', 'a[data-store-code]', redirectToStore);
-        $('.easyflags-clickable-options').on('click', 'a[data-store-code]', redirectToStore);
-    };
+    return $.swissup.easyflagsStoreSwitcher;
 });

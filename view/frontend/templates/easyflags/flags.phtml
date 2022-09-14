@@ -13,7 +13,7 @@
     $switcherMode = $this->helper('Swissup\Easyflags\Helper\Data')->getLanguageSwitcherMode();
 ?>
 <div class="easyflags switcher language switcher-language" data-ui-id="language-switcher" id="switcher-language<?php /* @escapeNotVerified */ echo $id?>" data-mage-init='{"Swissup_Easyflags/js/store-switcher":{}}'>
-    <div class="actions <?= $switcherMode ?>-mode options switcher-options">
+    <div class="actions <?= $switcherMode ?> options switcher-options">
 
     <?php if ($switcherMode == SwitcherMode::ONELINE): ?>
         <?php /* ONELINE MODE */ ?>
@@ -61,7 +61,7 @@
         </ul>
     <?php elseif ($switcherMode == SwitcherMode::POPUP): ?>
         <?php /* MODAL POPUP MODE */ ?>
-        <div class="action toggle switcher-trigger" data-bind="click: function(){ var modal = jQuery('.easyflags .switcher-popup').data('mageModal'); if (modal) modal.openModal(); }">
+        <div class="action toggle switcher-trigger">
             <strong class="view-<?= $block->escapeHtml($block->getCurrentStoreCode()) ?>" data-store-code="<?= $block->escapeHtml($currentStore->getCode()) ?>">
                 <?= $flagRenderer->setStore($currentStore)->toHtml() ?>
                 <span class="flag-title"><?= $block->escapeHtml($block->getStoreName()) ?></span>

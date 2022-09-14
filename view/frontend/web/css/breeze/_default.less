@@ -1,0 +1,65 @@
+& when (@critical) {
+    .easyflags {
+        &.switcher {
+            .switcher-popup {
+                display: none;
+            }
+        }
+
+        [data-store-code] {
+            align-items: center;
+            cursor: pointer;
+            display: inline-flex;
+            gap: .25rem;
+        }
+
+        .flag-placeholder {
+            background-color: rgba(0, 0, 0, 0.3);
+            color: #fff;
+            padding: 0 .25rem;
+        }
+
+        .flag-image {
+            max-height: 1.5rem;
+            vertical-align: top;
+        }
+
+        .one-line {
+            display: flex;
+            gap: .25rem;
+
+            strong {
+                cursor: default;
+            }
+
+            .easyflags-clickable-options {
+                display: flex;
+                flex-wrap: wrap;
+                gap: .25rem;
+            }
+        }
+    }
+}
+
+& when not (@critical) {
+    .modal-popup {
+        .easyflags-clickable-options {
+            display: flex;
+            flex-wrap: wrap;
+
+            [data-store-code] {
+                margin: .25rem;
+                padding: .25rem;
+                transition-property: background-color;
+                transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+                transition-duration: 150ms;
+
+                &:hover,
+                &:active,
+                &:focus {
+                    background-color: rgba(0, 0, 0, .05);
+                }
+            }
+        }
+    }
+}

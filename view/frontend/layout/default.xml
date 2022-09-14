@@ -6,10 +6,6 @@
             </action>
         </referenceBlock>
 
-        <!-- <referenceContainer name="before.body.end">
-            <block class="Magento\Store\Block\Switcher" name="easyflags.postData" template="Swissup_Easyflags::easyflags/post-data.phtml" ifconfig="easyflags/general/enabled" />
-        </referenceContainer> -->
-
         <block class="Magento\Framework\View\Element\Template" name="easyflags.renderer" template="Swissup_Easyflags::easyflags/renderer.phtml" ifconfig="easyflags/general/enabled">
             <arguments>
                 <argument name="show_placeholder" xsi:type="boolean">true</argument>

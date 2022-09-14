@@ -1,0 +1,15 @@
+<?php
+/** @var \Magento\Store\Block\Switcher $block */
+
+if (count($block->getStores()) < 2)
+    return;
+
+$data = [];
+foreach ($block->getStores() as $lang)
+    $data[$lang->getCode()] = $block
+        ->getViewModel()
+        ->getTargetStoreRedirectUrl($lang);
+?>
+<script type="application/json" id="easyflags-urls">
+    <?= json_encode($data, JSON_PRETTY_PRINT) ?>
+</script>
