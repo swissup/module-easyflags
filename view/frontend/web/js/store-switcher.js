@@ -55,12 +55,8 @@ define([
         },
 
         getStoreUrl: function (storeCode) {
-            // Find redirect url in mobile drawer.
-            // Or in script with ID "easyflags-urls".
-            return (
-                this.$storeSettings.find(`.view-${storeCode} a`).attr('href') ||
-                JSON.parse($('#easyflags-urls').html() || '{}')[storeCode]
-            );
+            // Find redirect url in script with ID "easyflags-urls".
+            return JSON.parse($('#easyflags-urls').html() || '{}')[storeCode];
         },
 
         _destroy: function () {

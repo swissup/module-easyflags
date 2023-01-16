@@ -11,5 +11,13 @@
                 <argument name="show_placeholder" xsi:type="boolean">true</argument>
             </arguments>
         </block>
+
+        <referenceContainer name="before.body.end">
+            <block class="Magento\Store\Block\Switcher" name="easyflags.urls" template="Swissup_Easyflags::url-variants.phtml" ifconfig="easyflags/general/enabled">
+                <arguments>
+                    <argument name="view_model" xsi:type="object">Magento\Store\ViewModel\SwitcherUrlProvider</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
     </body>
 </page>
