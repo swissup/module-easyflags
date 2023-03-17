@@ -6,6 +6,8 @@ use Magento\Framework\Event;
 
 class SaveFlagData implements Event\ObserverInterface
 {
+    private $imageUploader;
+    private $storeFlagFactory;
     public function __construct(
         \Magento\Catalog\Model\ImageUploader $imageUploader,
         \Swissup\Easyflags\Model\StoreFactory $storeFlagFactory
