@@ -32,19 +32,4 @@ class Mode implements \Magento\Framework\Option\ArrayInterface
             ]
         ];
     }
-
-    /**
-     * Get options in "key-value" format
-     *
-     * @return array
-     */
-    public function toArray()
-    {
-        $array = [];
-        foreach ($this->toOptionArray() as $option) {
-            $array[$option['value']] = $optin['label'];
-        }
-
-        return $array;
-    }
 }
