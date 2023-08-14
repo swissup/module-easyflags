@@ -2,7 +2,7 @@
 
 namespace Swissup\Easyflags\Model\Config\Source;
 
-class Mode implements \Magento\Framework\Option\ArrayInterface
+class Mode implements \Magento\Framework\Data\OptionSourceInterface
 {
 
     const ONELINE = 'one-line';
