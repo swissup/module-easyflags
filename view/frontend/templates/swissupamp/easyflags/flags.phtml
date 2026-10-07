@@ -23,12 +23,12 @@
                         if (strpos($postArr['action'], 'stores/store/redirect') !== false) {
                             $url = $block->getUrl('stores/store/redirect', ['_query' => $postArr['data']]);
                         } else {
-                            $url = $block->escapeUrl($_lang->getCurrentUrl());
+                            $url = $_lang->getCurrentUrl();
                         }
                     ?>
                     <?php if ($_lang->getId() != $block->getCurrentStoreId()): ?>
                         <div>
-                            <a href="<?= $url ?>">
+                            <a href="<?= $block->escapeUrl($url) ?>">
                                 <?= $flagRenderer->setStore($_lang)->toHtml() ?>
                                 <span class="flag-title"><?= $block->escapeHtml($_lang->getName()) ?></span>
                             </a>

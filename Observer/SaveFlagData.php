@@ -37,8 +37,9 @@ class SaveFlagData implements Event\ObserverInterface
             if (isset($postData[$imageField])
                 && is_array($postData[$imageField])
             ) {
+                // basename() blocks path traversal in moveFileFromTmp
                 $imageName = isset($postData[$imageField][0]['name'])
-                    ? $postData[$imageField][0]['name']
+                    ? basename((string) $postData[$imageField][0]['name'])
                     : '';
                 if (isset($postData[$imageField][0]['tmp_name'])) {
                     try {
